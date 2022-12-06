@@ -2,6 +2,8 @@
 
 ```
     py -m pip install aoc_helper
+    py -m aoc_helper template N-M
+    py -m pytest 2022/day_nn.py
 ```
 
 ## 2022
@@ -13,3 +15,4 @@ https://adventofcode.com/2022
 | [Day 3: Rucksack Reorganization](2022/day_03.py) | ⭐⭐    |
 | [Day 4: Camp Cleanup](2022/day_04.py)            | ⭐⭐    |
 | [Day 5: Supply Stacks](2022/day_05.py)           | ⭐⭐    |
+| [Day 6: Tuning Trouble](2022/day_06.py)| ⭐⭐ |
