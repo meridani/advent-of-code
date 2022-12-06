@@ -1,14 +1,8 @@
-import copy
-from operator import le
-import re
-from typing import List
-
 import aoc_helper
 from aoc_helper import (Grid, PrioQueue, decode_text, extract_ints, frange,
                         irange, iter, list, map, range, tail_call)
 
 raw = aoc_helper.fetch(6, 2022)
-
 
 def parse_raw():
     return ''.join(raw.splitlines())
@@ -16,11 +10,8 @@ def parse_raw():
 data: str = parse_raw()
 
 def get_first_distinct(l, window_size=4):
-    
     for i in range(len(data)-window_size):
-        chars = data[i:i+window_size]
-        s = set(chars)
-        if len(s) == window_size:
+        if len(set(data[i:i+window_size])) == window_size:
             return i+window_size
 
 def part_one():
@@ -47,6 +38,24 @@ def test_ex1():
     data = parse_raw()
     assert (part_one() == 11)
 
+def test_ex2():
+    global data
+    global raw
+    raw = """mjqjpqmgbljsphdztnvjfqwrcgsmlb"""
+    data = parse_raw()
+    assert (part_one() == 19)
+    raw = """bvwbjplbgvbhsrlpgdmjqwftvncz"""
+    data = parse_raw()
+    assert (part_one() == 23)
+    raw = """nppdvjthqldpwncqszvftbrmjlhg"""
+    data = parse_raw()
+    assert (part_one() == 23)
+    raw = """nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg"""
+    data = parse_raw()
+    assert (part_one() == 29)
+    raw = """zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"""
+    data = parse_raw()
+    assert (part_one() == 26)
 
 if __name__ == "__main__":
     # test_ex1()
