@@ -27,7 +27,14 @@ def test_ex1():
     assert(part_one()==1)
     assert(part_two()==1)
 
-
 if __name__ == "__main__":
-    aoc_helper.lazy_submit(day=19, year=2022, solution=part_one)
-    aoc_helper.lazy_submit(day=19, year=2022, solution=part_two)
+    # test_ex1()
+    p1 = part_one()
+    p2 = part_two()
+    print(p1)
+    print(p2)
+    try:
+        aoc_helper.lazy_submit(day=19, year=2022, solution=p1)
+        aoc_helper.lazy_submit(day=19, year=2022, solution=p2)
+    except:
+        print("Can't upload to AoC")
