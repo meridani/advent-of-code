@@ -1,40 +1,40 @@
-from tokenize import Number, group
+from tokenize import Number
 from typing import List
 
 import aoc_helper
-from aoc_helper import (Grid, PrioQueue, decode_text, extract_ints, frange,
-                        irange, iter, list, map, range, tail_call)
 
 raw = aoc_helper.fetch(3, 2022)
 
 
-def parse_raw() -> List:
+def parse_raw(raw) -> List:
     # pass
     return raw.splitlines()
     # return [line.split(" ") for line in raw.splitlines()]
 
-data: List = parse_raw()
+
+data: List
+
 
 def part_one() -> Number:
     sums: Number = 0
 
     for line in data:
-        l = int(len(line)/2)
-        part1 = {*line[:l]}
-        part2 = {*line[l:]}
+        line_len: int = int(len(line)/2)  # noqa: F821
+        part1 = {*line[:line_len]}
+        part2 = {*line[line_len:]}
         part1.intersection_update(part2)
         for item in part1:
             priority = ord(item)-ord('A') + 27 if item.isupper() else ord(item)-ord('a') + 1
             sums += priority
 
-
     return sums
+
 
 def part_two() -> Number:
     sums: Number = 0
 
-    group_pos:Number = 0
-    groups = [{},{},{}]
+    group_pos: Number = 0
+    groups = [{}, {}, {}]
 
     for line in data:
         groups[group_pos] = {*line}
@@ -49,20 +49,21 @@ def part_two() -> Number:
 
     return sums
 
+
 def test_ex1():
-    global raw
     global data
-    raw="""vJrwpWtwJgWrhcsFMMfFFhFp
+    raw = """vJrwpWtwJgWrhcsFMMfFFhFp
 jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
 PmmdzqPrVvPwwTWBwg
 wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
 ttgJtRGJQctTZtZT
 CrZsJsPPZsGzwwsLwLmpwMDw"""
-    data = parse_raw()
-    assert(part_one()==157)
-    assert(part_two()==70)
+    data = parse_raw(raw)
+    assert (part_one() == 157)
+    assert (part_two() == 70)
 
 
 if __name__ == "__main__":
+    data = parse_raw(raw)
     aoc_helper.lazy_submit(day=3, year=2022, solution=part_one)
     aoc_helper.lazy_submit(day=3, year=2022, solution=part_two)
