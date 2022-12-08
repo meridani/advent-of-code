@@ -21,10 +21,10 @@ def test_ex1():
     assert(part_two()==0)
 
 if __name__ == "__main__":
-    raw = aoc_helper.fetch({day}, {year})
+    raw = aoc_helper.fetch(9, 2022)
     data = parse_raw(raw)
     try:
-        aoc_helper.lazy_submit(day={day}, year={year}, solution=part_one)
-        aoc_helper.lazy_submit(day={day}, year={year}, solution=part_two)
+        aoc_helper.lazy_submit(day=9, year=2022, solution=part_one)
+        aoc_helper.lazy_submit(day=9, year=2022, solution=part_two)
     except Exception as err:
         print("Can't upload to AoC", err)

@@ -18,3 +18,4 @@ https://adventofcode.com/2022
 | [Day 6: Tuning Trouble](2022/day_06.py)          | ⭐⭐    |
 | [Day 7: No Space Left On Device](2022/day_07.py) | ⭐⭐    |
 | [Day 8: Treetop Tree House](2022/day_08.py)      | ⭐⭐    |
+| [](2022/day_09.py)                               |       |
