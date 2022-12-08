@@ -60,8 +60,9 @@ def test_ex1():
 if __name__ == "__main__":
     raw = aoc_helper.fetch(8, 2022)
     data = parse_raw(raw)
+    score = 0
     try:
         aoc_helper.lazy_submit(day=8, year=2022, solution=part_one)
         aoc_helper.lazy_submit(day=8, year=2022, solution=part_two)
-    except:
-        print("Can't upload to AoC")
+    except Exception as err:
+        print("Can't upload to AoC", err)
