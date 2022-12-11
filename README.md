@@ -19,3 +19,5 @@ https://adventofcode.com/2022
 | [Day 7: No Space Left On Device](2022/day_07.py) | ⭐⭐    |
 | [Day 8: Treetop Tree House](2022/day_08.py)      | ⭐⭐    |
 | [Day 9: Rope Bridge](2022/day_09.py)             | ⭐⭐    |
+| [Day 10: Cathode-Ray Tube](2022/day_10.py)       | ⭐⭐    |
+| [Day 11: Monkey in the Middle](2022/day_11.py)   | ⭐⭐    |

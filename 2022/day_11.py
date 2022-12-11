@@ -1,5 +1,6 @@
 from copy import deepcopy
 from dataclasses import dataclass
+from math import prod
 import operator
 from typing import Callable, NewType
 import aoc_helper
@@ -13,20 +14,23 @@ class Monkey:
     items: list[int]
     throw_true: int
     throw_false: int
-    operation: Callable[[int], int]
+    operation: Callable
     operand: int
     divisor: int
     inspected: int = 0
 
-    def catch(self, item):
-        self.items.append(item)
+    def catch(self, item, modulo = 0):
+        if modulo == 0:
+            self.items.append(item)
+        else:
+            self.items.append(item % modulo)
 
     def turn(self, worry = True) -> list:
         l = []
-        self.inspected+= len(self.items)
-        for i in self.items:
-            operand = self.operand if self.operand != 0 else i
-            y = self.operation(i, operand)
+        for item in self.items:
+            self.inspected+= 1
+            operand = self.operand if self.operand != 0 else item
+            y = self.operation(item, operand)
             if worry:
                 z = y//3
             else:
@@ -66,23 +70,19 @@ Monkey 0:
                 case "*":
                     if num == "old":
                         operand = 0
-                        # def operation(a: int): return a * a
                         operation = operator.mul
                     else:
                         n = int(num)
                         operand = n
-                        # def operation(a: int): return a * n
                         operation = operator.mul
 
                 case "+":
                     if num == "old":
                         operand = 0
-                        # def operation(a): return a + a
                         operation = operator.add
                     else:
                         n = int(num)
                         operand = n
-                        # def operation(a): return a + n  
                         operation = operator.add
 
 
@@ -90,7 +90,6 @@ Monkey 0:
 
         elif line.strip().startswith("Test"):
             divisor = int(line.split()[-1])
-            # test = operator.mod
         elif "true" in line.strip():
             t = int(line.split()[-1])
         elif "false" in line.strip():
@@ -110,32 +109,30 @@ def part_one():
         for monkey in m:
             throws = monkey.turn()
             for throw in throws:
-                m[throw[0]].catch(throw[1])
+                what = throw[1]
+                to = throw[0]
+                m[to].catch(what)
 
-    m = [inspects.inspected for inspects in m]
-    first = max(m)
-    m.remove(first)
-    second = max(m)
-    return first * second
+    inspects = list([inspects.inspected for inspects in m]).sorted(reverse=True)[:2]
+    return prod(inspects)
 
 
 def part_two():
     global monkeys
     m = deepcopy(monkeys)
 
-    for round in range(10000):
-        # if round % 100 == 0:
-        print(f"round: {round}")
+    modulo = prod([monkey.divisor for monkey in m])
+
+    for _ in range(10000):
         for monkey in m:
             throws = monkey.turn(False)
             for throw in throws:
-                m[throw[0]].catch(throw[1])
+                what = throw[1]
+                to = throw[0]
+                m[to].catch(what, modulo)
 
-    m = [inspects.inspected for inspects in m]
-    first = max(m)
-    m.remove(first)
-    second = max(m)
-    return first * second
+    inspects = list([inspects.inspected for inspects in m]).sorted(reverse=True)[:2]
+    return prod(inspects)
 
 
 def test_ex1():
