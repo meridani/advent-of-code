@@ -47,13 +47,6 @@ monkeys: list[Monkey] = []
 
 
 def parse_raw(raw: str) -> list[Monkey]:
-    """
-Monkey 0:
-  Starting items: 79, 98
-  Operation: new = old * 19
-  Test: divisible by 23
-    If true: throw to monkey 2
-    If false: throw to monkey 3"""
     global monkeys
     newMonkey: Monkey
 
@@ -85,7 +78,6 @@ Monkey 0:
                         operand = n
                         operation = operator.add
 
-
             op = operation
 
         elif line.strip().startswith("Test"):
@@ -101,31 +93,16 @@ Monkey 0:
         newMonkey = Monkey(name=name, items=items, throw_true=t, throw_false=f, operation=op, divisor=divisor, operand=operand)
         monkeys.append(newMonkey)
 
-def part_one():
+def play(r:int, worry=True):
     global monkeys
     m = deepcopy(monkeys)
 
-    for _ in range(20):
-        for monkey in m:
-            throws = monkey.turn()
-            for throw in throws:
-                what = throw[1]
-                to = throw[0]
-                m[to].catch(what)
-
-    inspects = list([inspects.inspected for inspects in m]).sorted(reverse=True)[:2]
-    return prod(inspects)
-
-
-def part_two():
-    global monkeys
-    m = deepcopy(monkeys)
-
+    # https://en.wikipedia.org/wiki/Chinese_remainder_theorem
     modulo = prod([monkey.divisor for monkey in m])
 
-    for _ in range(10000):
+    for _ in range(r):
         for monkey in m:
-            throws = monkey.turn(False)
+            throws = monkey.turn(worry)
             for throw in throws:
                 what = throw[1]
                 to = throw[0]
@@ -133,6 +110,13 @@ def part_two():
 
     inspects = list([inspects.inspected for inspects in m]).sorted(reverse=True)[:2]
     return prod(inspects)
+
+def part_one():
+    return play(20)
+
+
+def part_two():
+    return play(10000, False)
 
 
 def test_ex1():
