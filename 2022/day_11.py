@@ -1,8 +1,6 @@
 from copy import deepcopy
 from dataclasses import dataclass
 from math import prod
-import operator
-from typing import Callable, NewType
 import aoc_helper
 from aoc_helper import (Grid, PrioQueue, decode_text, extract_ints, frange,
                         irange, iter, list, map, range, tail_call)
@@ -14,8 +12,7 @@ class Monkey:
     items: list[int]
     throw_true: int
     throw_false: int
-    operation: Callable
-    operand: int
+    operation: str
     divisor: int
     inspected: int = 0
 
@@ -29,16 +26,12 @@ class Monkey:
         l = []
         for item in self.items:
             self.inspected+= 1
-            operand = self.operand if self.operand != 0 else item
-            y = self.operation(item, operand)
-            if worry:
-                z = y//3
+            item = eval(self.operation, {"old": item})
+            item = item //3 if worry else item
+            if item % self.divisor == 0:
+                l.append([self.throw_true, item])
             else:
-                z = y
-            if z % self.divisor == 0:
-                l.append([self.throw_true, z])
-            else:
-                l.append([self.throw_false, z])
+                l.append([self.throw_false, item])
         self.items = []
         return l
 
@@ -56,30 +49,7 @@ def parse_raw(raw: str) -> list[Monkey]:
         elif line.strip().startswith("Starting"):
             items = list(map(int, line.split(":")[1].split(",")))
         elif line.strip().startswith("Operation"):
-            l = line.split("=")[1].split()
-            op = l[-2]
-            num = l[-1]
-            match op:
-                case "*":
-                    if num == "old":
-                        operand = 0
-                        operation = operator.mul
-                    else:
-                        n = int(num)
-                        operand = n
-                        operation = operator.mul
-
-                case "+":
-                    if num == "old":
-                        operand = 0
-                        operation = operator.add
-                    else:
-                        n = int(num)
-                        operand = n
-                        operation = operator.add
-
-            op = operation
-
+            operation = line.split("=")[1]
         elif line.strip().startswith("Test"):
             divisor = int(line.split()[-1])
         elif "true" in line.strip():
@@ -87,10 +57,10 @@ def parse_raw(raw: str) -> list[Monkey]:
         elif "false" in line.strip():
             f = int(line.split()[-1])
         elif line.strip() == "":
-            newMonkey = Monkey(name=name, items=items, throw_true=t, throw_false=f, operation=op, divisor=divisor, operand=operand)
+            newMonkey = Monkey(name=name, items=items, throw_true=t, throw_false=f, operation=operation, divisor=divisor)
             monkeys.append(newMonkey)
     else:
-        newMonkey = Monkey(name=name, items=items, throw_true=t, throw_false=f, operation=op, divisor=divisor, operand=operand)
+        newMonkey = Monkey(name=name, items=items, throw_true=t, throw_false=f, operation=operation, divisor=divisor)
         monkeys.append(newMonkey)
 
 def play(r:int, worry=True):
@@ -109,6 +79,7 @@ def play(r:int, worry=True):
                 m[to].catch(what, modulo)
 
     inspects = list([inspects.inspected for inspects in m]).sorted(reverse=True)[:2]
+    print(inspects, prod(inspects))
     return prod(inspects)
 
 def part_one():
