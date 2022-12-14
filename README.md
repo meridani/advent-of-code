@@ -21,3 +21,4 @@ https://adventofcode.com/2022
 | [Day 9: Rope Bridge](2022/day_09.py)             | ⭐⭐    |
 | [Day 10: Cathode-Ray Tube](2022/day_10.py)       | ⭐⭐    |
 | [Day 11: Monkey in the Middle](2022/day_11.py)   | ⭐⭐    |
+| [Day 14: Regolith Reservoir](2022/day_14.py)     | ⭐⭐    |
