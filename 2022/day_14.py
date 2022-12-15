@@ -1,3 +1,4 @@
+from __future__ import annotations
 from copy import deepcopy
 from dataclasses import dataclass
 from typing import Set
@@ -22,6 +23,8 @@ class Point:
     def __add__(self, p):
         return Point(self.x+p.x, self.y+p.y)
 
+    def manhattan(self, p: Point):
+        return abs(self.x-p.x) + abs(self.y-p.y)
 
 rocks: set[Point] = set()
 sands: set[Point] = set()
