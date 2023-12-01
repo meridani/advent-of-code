@@ -26,6 +26,6 @@ https://adventofcode.com/2022
 
 ## 2023
 https://adventofcode.com/2023
-| Day    | Stars |
-| ------ | ----- |
-| Day 1: |       |
+| Day                                  | Stars |
+| ------------------------------------ | ----- |
+| [Day 1: Trebuchet?!](2023/day_01.py) | ⭐⭐    |
