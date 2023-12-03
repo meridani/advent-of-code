@@ -30,3 +30,4 @@ https://adventofcode.com/2023
 | --------------------------------------- | ----- |
 | [Day 1: Trebuchet?!](2023/day_01.py)    | ⭐⭐    |
 | [Day 2: Cube Conundrum](2023/day_02.py) | ⭐⭐    |
+| [Day 3: Gear Ratios](2023/day_03.py)    |       |
