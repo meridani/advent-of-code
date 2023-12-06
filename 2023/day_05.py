@@ -120,7 +120,7 @@ def part_one(data=data):
 
     return min(min_val)
 
-# aoc_helper.lazy_test(day=5, year=2023, parse=parse_raw, solution=part_one)
+aoc_helper.lazy_test(day=5, year=2023, parse=parse_raw, solution=part_one)
 
 
 # providing this default is somewhat of a hack - there isn't any other way to
@@ -143,7 +143,7 @@ def part_two(data=data):
     return 0
 
 
-# aoc_helper.lazy_test(day=5, year=2023, parse=parse_raw, solution=part_two)
+aoc_helper.lazy_test(day=5, year=2023, parse=parse_raw, solution=part_two)
 
 aoc_helper.lazy_submit(day=5, year=2023, solution=part_one, data=data)
 aoc_helper.lazy_submit(day=5, year=2023, solution=part_two, data=data)
