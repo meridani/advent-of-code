@@ -48,13 +48,13 @@ data = parse_raw(raw)
 def part_one(data=data):
     instruction, nodes = data
     node = 'AAA'
-    return run(instruction, nodes, node)
+    return run(instruction, nodes, node, 'ZZZ')
     
 
 
-# aoc_helper.lazy_test(day=8, year=2023, parse=parse_raw, solution=part_one)
+aoc_helper.lazy_test(day=8, year=2023, parse=parse_raw, solution=part_one)
 
-def run(instruction, nodes, node):
+def run(instruction, nodes, node, end):
     sums = 0
     
     # Nice
@@ -66,7 +66,7 @@ def run(instruction, nodes, node):
             else:
                 next_node = nodes[node].R
             node = next_node
-            if node.endswith('Z'):
+            if node.endswith(end):
                 return sums
 
 # providing this default is somewhat of a hack - there isn't any other way to
@@ -76,9 +76,11 @@ def part_two(data=data):
 
     instruction, nodes = data
     node = [node for node in nodes if node.endswith("A")]
-    sums = [run(instruction, nodes, n) for n in node]
+    sums = [run(instruction, nodes, n, 'Z') for n in node]
     return lcm(*sums)
 
+print(part_one())
+print(part_two())
 
 aoc_helper.lazy_test(day=8, year=2023, parse=parse_raw, solution=part_two)
 
