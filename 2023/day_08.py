@@ -41,19 +41,6 @@ def parse_raw(raw: str):
 
 data = parse_raw(raw)
 
-
-# providing this default is somewhat of a hack - there isn't any other way to
-# force type inference to happen, AFAIK - but this won't work with standard
-# collections (list, set, dict, tuple)
-def part_one(data=data):
-    instruction, nodes = data
-    node = 'AAA'
-    return run(instruction, nodes, node, 'ZZZ')
-    
-
-
-aoc_helper.lazy_test(day=8, year=2023, parse=parse_raw, solution=part_one)
-
 def run(instruction, nodes, node, end):
     sums = 0
     
@@ -68,6 +55,24 @@ def run(instruction, nodes, node, end):
             node = next_node
             if node.endswith(end):
                 return sums
+
+
+# providing this default is somewhat of a hack - there isn't any other way to
+# force type inference to happen, AFAIK - but this won't work with standard
+# collections (list, set, dict, tuple)
+def part_one(data=data):
+    instruction, nodes = data
+    if len(nodes)==8:
+        start = '11A'
+        end = '11Z'
+    else:
+        start = 'AAA'
+        end = 'ZZZ'
+    return run(instruction, nodes, start, end)
+    
+
+
+aoc_helper.lazy_test(day=8, year=2023, parse=parse_raw, solution=part_one)
 
 # providing this default is somewhat of a hack - there isn't any other way to
 # force type inference to happen, AFAIK - but this won't work with standard
