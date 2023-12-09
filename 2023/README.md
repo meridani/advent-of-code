@@ -1,14 +1,14 @@
 ## 2023
 
 https://adventofcode.com/2023
-| Day                                                      | Stars |
-| -------------------------------------------------------- | ----- |
-| [Day 1: Trebuchet?!](2023/day_01.py)                     | ⭐⭐    |
-| [Day 2: Cube Conundrum](2023/day_02.py)                  | ⭐⭐    |
-| [Day 3: Gear Ratios](2023/day_03.py)                     | ⭐⭐    |
-| [Day 4: Scratchcards](2023/day_04.py)                    | ⭐⭐    |
-| [Day 5: If You Give A Seed A Fertilizer](2023/day_05.py) | ⭐⭐    |
-| [Day 6: Wait For It](2023/day_06.py)                     | ⭐⭐    |
-| [Day 7: Camel Cards](2023/day_07.py)                     | ⭐⭐    |
-| [Day 8: Haunted Wasteland](2023/day_08.py)               | ⭐⭐    |
-| [Day 9: Mirage Maintenance](2023/day_09.py)              | ⭐⭐    |
+| Day                                                 | Stars |
+| --------------------------------------------------- | ----- |
+| [Day 1: Trebuchet?!](day_01.py)                     | ⭐⭐    |
+| [Day 2: Cube Conundrum](day_02.py)                  | ⭐⭐    |
+| [Day 3: Gear Ratios](day_03.py)                     | ⭐⭐    |
+| [Day 4: Scratchcards](day_04.py)                    | ⭐⭐    |
+| [Day 5: If You Give A Seed A Fertilizer](day_05.py) | ⭐⭐    |
+| [Day 6: Wait For It](day_06.py)                     | ⭐⭐    |
+| [Day 7: Camel Cards](day_07.py)                     | ⭐⭐    |
+| [Day 8: Haunted Wasteland](day_08.py)               | ⭐⭐    |
+| [Day 9: Mirage Maintenance](day_09.py)              | ⭐⭐    |
