@@ -27,9 +27,9 @@ raw = aoc_helper.fetch(10, 2023)
 def parse_raw(raw: str):
     data = []
     start = (0, 0)
-    for y, line in enumerate(raw.splitlines()):
+    for r, line in enumerate(raw.splitlines()):
         if "S" in line:
-            start = (line.index("S"), y)
+            start = (r, line.index("S"))
         data.append(list(line))
 
     return data, start
@@ -37,10 +37,10 @@ def parse_raw(raw: str):
 
 data = parse_raw(raw)
 
-NORTH = (0, -1)
-EAST = (1, 0)
-SOUTH = (0, 1)
-WEST = (-1, 0)
+NORTH = (-1, 0)
+EAST = (0, 1)
+SOUTH = (1, 0)
+WEST = (0, -1)
 valid_moves = {
     # "X": [EAST, WEST],  # Manually looked at the input file...
     "|": [NORTH, SOUTH],
@@ -64,8 +64,8 @@ def part_one(data=data):
     grid = data[0]
     q = deque()
     max_dist = -inf
+    grid[start[0]][start[1]] = "-"
     q.append((start, "-", 0))
-    visited[start] = 0
     while q:
         node, typ, dist = q.popleft()
         max_dist = max(dist, max_dist)
@@ -73,11 +73,11 @@ def part_one(data=data):
         for d in valid_moves[typ]:
             new_node = tuple(map(lambda x, y: x + y, node, d))
             if (
-                0 <= new_node[0] < len(grid[0])
-                and 0 <= new_node[1] < len(grid)
+                0 <= new_node[0] < len(grid)
+                and 0 <= new_node[1] < len(grid[0])
                 and new_node not in visited
             ):
-                q.append((new_node, grid[new_node[1]][new_node[0]], dist + 1))
+                q.append((new_node, grid[new_node[0]][new_node[1]], dist + 1))
         visited[node] = typ
 
     return max_dist
@@ -97,8 +97,8 @@ def part_two(data=data):
     grid = data[0]
     q = deque()
     max_dist = -inf
+    grid[start[0]][start[1]] = "-"
     q.append((start, "-", 0))
-    visited[start] = 0
     while q:
         node, typ, dist = q.popleft()
         max_dist = max(dist, max_dist)
@@ -106,72 +106,45 @@ def part_two(data=data):
         for d in valid_moves[typ]:
             new_node = tuple(map(lambda x, y: x + y, node, d))
             if (
-                0 <= new_node[0] < len(grid[0])
-                and 0 <= new_node[1] < len(grid)
+                0 <= new_node[0] < len(grid)
+                and 0 <= new_node[1] < len(grid[0])
                 and new_node not in visited
             ):
-                q.append((new_node, grid[new_node[1]][new_node[0]], dist + 1))
+                q.append((new_node, grid[new_node[0]][new_node[1]], dist + 1))
         visited[node] = typ
 
-    ins = 0
-    inside = False
-    enter = ""
+    insides = set()
     for r, line in enumerate(grid):
+        inside = False
         for c, pipe in enumerate(line):
-            match pipe:
-                case _ if (c, r) not in visited and not inside:
-                    continue
-                case _ if (c, r) not in visited and inside:
-                    ins += 1
-                case "-":
-                    ins += 1
-                case "F" | "|" | "L" if not inside:
-                    ins += 1
-                    inside = True
-                    enter = pipe
-                case "|":
-                    if inside:
-                        inside = False
-                case "L":
-                    ins += 1
-                case "J":
-                    ins += 1
-                    if enter in "L|F":
-                        inside = False
-                        enter = ""
-                case "7":
-                    ins += 1
-                    if enter in "L|F":
-                        inside = False
-                        enter = ""
-                case "F":
-                    ins += 1
-                # case "|" if inside:
-                #     ins += 1
-                #     inside = False
-                #     enter = ""
-                # case "F" if enter in "L":
-                #     ins += 1
-                # case "7" if enter in "L":
-                #     ins += 1
-                # case "7" if enter in "F|" and inside:
-                #     ins += 1
-                #     inside = False
-                #     enter = ""
-                # case "J" if enter in "F":
-                #     ins += 1
-                # case "J" if enter in "|L" and inside:
-                #     ins += 1
-                #     inside = False
-                #     enter = ""
-                case _:
-                    print((r, c), pipe, inside, enter)
-    return ins - len(visited)
+            if (r, c) in visited:
+                if pipe in "|F7":
+                    inside = not inside
+            else:
+                if inside:
+                    insides.add((r, c))
+
+    return len(insides)
 
 
+# def test():
+#     raw = r"...........\
+# .S-------7.\
+# .|F-----7|.\
+# .||.....||.\
+# .||.....||.\
+# .|L-7.F-J|.\
+# .|..|.|..|.\
+# .L--J.L--J.\
+# ..........."
+#     data = parse_raw(raw)
+#     print(part_two(data))
+
+
+# test()
 print(part_two())
 
-# aoc_helper.lazy_test(day=10, year=2023, parse=parse_raw, solution=part_two)
+aoc_helper.lazy_test(day=10, year=2023, parse=parse_raw, solution=part_two)
 
 aoc_helper.lazy_submit(day=10, year=2023, solution=part_one, data=data)
-# aoc_helper.lazy_submit(day=10, year=2023, solution=part_two, data=data)
+aoc_helper.lazy_submit(day=10, year=2023, solution=part_two, data=data)
