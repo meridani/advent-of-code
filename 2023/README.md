@@ -12,3 +12,5 @@ https://adventofcode.com/2023
 | [Day 7: Camel Cards](day_07.py)                     | ⭐⭐    |
 | [Day 8: Haunted Wasteland](day_08.py)               | ⭐⭐    |
 | [Day 9: Mirage Maintenance](day_09.py)              | ⭐⭐    |
+| [Day 10: Pipe Maze](day_10.py)                      | ⭐     |
+| [Day 11: Cosmic Expansion](day_10.py)               | ⭐⭐    |
