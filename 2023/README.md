@@ -14,3 +14,5 @@ https://adventofcode.com/2023
 | [Day 9: Mirage Maintenance](day_09.py)              | ⭐⭐    |
 | [Day 10: Pipe Maze](day_10.py)                      | ⭐⭐    |
 | [Day 11: Cosmic Expansion](day_10.py)               | ⭐⭐    |
+| [Day 12: Hot Springs](day_11.py)                    |       |
+| [Day 13: Point of Incidence](day_12.py)             | ⭐⭐    |
