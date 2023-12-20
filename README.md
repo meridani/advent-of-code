@@ -10,5 +10,5 @@
 [To code](2022)
 
 
-## [2023: 28⭐/50⭐](https://adventofcode.com/2023)
+## [2023: 30⭐/50⭐](https://adventofcode.com/2023)
 [To code](2023)
