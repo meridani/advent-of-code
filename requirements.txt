@@ -18,3 +18,4 @@ typing==3.7.4.3
 typing_extensions==4.8.0
 urllib3==2.1.0
 yarg==0.1.9
+tqdm==4.67.1
