@@ -18,6 +18,21 @@ def parse_raw2(inp: str):
     parts = inp.split("do()")
     parts = [part.split("don't()")[0] for part in parts]
     parts = "".join(parts)
+
+    # pattern = r"(do(?:n't)?)|(?:mul)\((\d+),(\d+)\)"
+    # second = re.findall(pattern, inp)
+    # enabled = True
+    # s = []
+    # for instruction in second:
+    #     match (instruction):
+    #         case ("do", _, _):
+    #             enabled = True
+    #         case ("don't", _, _):
+    #             enabled = False
+    #         case ("", a, b):
+    #             if enabled:
+    #                 s.append((int(a), int(b)))
+
     return parse_raw(parts)
 
 
