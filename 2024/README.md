@@ -7,7 +7,7 @@
 | [Day 1: Historian Hysteria](day_01.py) | ⭐⭐    |
 | [Day 2: Red-Nosed Reports](day_02.py)  | ⭐⭐    |
 | [Day 3: Mull It Over](day_03.py)       | ⭐⭐    |
-| [Day 4: ](day_04.py)                   |       |
+| [Day 4: Ceres Search](day_04.py)       | ⭐⭐    |
 | [Day 5: ](day_05.py)                   |       |
 | [Day 6: ](day_06.py)                   |       |
 | [Day 7: ](day_07.py)                   |       |
