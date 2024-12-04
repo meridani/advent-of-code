@@ -41,7 +41,6 @@ def part_one(data):
     for a, b in data:
         sums += a * b
 
-    print(sums)
     return sums
 
 

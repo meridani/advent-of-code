@@ -1,3 +1,4 @@
+import sys
 import aoc_helper
 from rich.progress import track
 import numpy as np
@@ -30,7 +31,6 @@ def part_one(data):
         sums += "".join(np.fliplr(data).diagonal(col)).count("XMAS")
         sums += "".join(np.fliplr(data).diagonal(col)).count("SAMX")
 
-    print(sums)
     return sums
 
 
@@ -70,20 +70,20 @@ def part_two(data):
                 ):
                     sums += 1
 
-    print(sums)
     return sums
 
 
 if __name__ == "__main__":
-
+    sys.argv.append("--force-run")
     raw = aoc_helper.fetch(DAY, 2024)
     parsed = parse_raw(raw)
 
+    part1 = part_one(parsed)
     aoc_helper.lazy_test(day=DAY, year=2024, parse=parse_raw, solution=part_one)
-    aoc_helper.lazy_test(day=DAY, year=2024, parse=parse_raw2, solution=part_two)
-
-    aoc_helper.lazy_submit(day=DAY, year=2024, solution=part_one, data=parsed)
+    aoc_helper.submit(day=DAY, year=2024, part=1, answer=part1)
 
     parsed = parse_raw2(raw)
 
-    aoc_helper.lazy_submit(day=DAY, year=2024, solution=part_two, data=parsed)
+    part2 = part_two(parsed)
+    aoc_helper.lazy_test(day=DAY, year=2024, parse=parse_raw2, solution=part_two)
+    aoc_helper.submit(day=DAY, year=2024, part=2, answer=part2)
